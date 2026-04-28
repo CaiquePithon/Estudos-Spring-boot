@@ -1,5 +1,7 @@
 package br.com.projeto.api.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,6 +20,11 @@ public class Controller {
     @PostMapping("/cadastrarprofessor")
     public Professor cadastrar(@RequestBody Professor p) {
         return acao.save(p);
+    }
+
+    @GetMapping("/listarprofessores")
+    public List<Professor> listar() {
+        return acao.findAll();
     }
 
     @GetMapping("")
