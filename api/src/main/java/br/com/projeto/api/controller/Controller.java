@@ -1,16 +1,32 @@
 package br.com.projeto.api.controller;
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-
 import br.com.projeto.api.model.Professor;
+import br.com.projeto.api.repository.ProfessorRepository;
 
 @RestController
 public class Controller {
     
+    @Autowired
+    private ProfessorRepository acao;
+
+    @PostMapping("/cadastrarprofessor")
+    public Professor cadastrar(@RequestBody Professor p) {
+        return acao.save(p);
+    }
+
+    @GetMapping("/listarprofessores")
+    public List<Professor> listar() {
+        return acao.findAll();
+    }
+
     @GetMapping("")
     public String mensagem() {
         return "Hello World!";
