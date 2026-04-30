@@ -9,13 +9,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import br.com.projeto.api.model.Professor;
-import br.com.projeto.api.repository.ProfessorRepository;
+import br.com.projeto.api.repository.Repositorio;
 
 @RestController
 public class Controller {
     
     @Autowired
-    private ProfessorRepository acao;
+    private Repositorio acao;
 
     @PostMapping("/cadastrarprofessor")
     public Professor cadastrar(@RequestBody Professor p) {
@@ -27,23 +27,30 @@ public class Controller {
         return acao.findAll();
     }
 
-    @GetMapping("")
-    public String mensagem() {
-        return "Hello World!";
+    @GetMapping("/professor/{matricula}")
+    public Professor listar(@PathVariable String matricula) {
+        return acao.findByMatricula(matricula);
     }
+
+
+    // @PostMapping("/professor")
+    // public Professor professor(@RequestBody Professor p) {
+    //     return p;
+    // }
+
+    // @GetMapping("")
+    // public String mensagem() {
+    //     return "Hello World!";
+    // }
 
     @GetMapping("/boas-vindas/{nome}")
     public String boasVindas(@PathVariable String nome) {
         return "Seja bem-vindo(a) à minha API, " + nome + "!";
     }
 
-    @GetMapping("/boas-vindas")
+    @GetMapping("")
     public String boasVindas() {
         return "Seja bem-vindo(a) à minha API!";
     }
 
-    @PostMapping("/professor")
-    public Professor professor(@RequestBody Professor p) {
-        return p;
-    }
 }
