@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 import br.com.projeto.api.model.Professor;
 
 @Repository
-public interface Repositorio extends CrudRepository<Professor, Integer> {
+public interface RepositorioProfessor extends CrudRepository<Professor, Integer> {
 
     List<Professor> findAll();
     
@@ -18,4 +18,14 @@ public interface Repositorio extends CrudRepository<Professor, Integer> {
     Professor findById(String Id);
 
     List<Professor> findByEscolaID(int escolaID);
+
+    List<Professor> findByOrderByNome(); //Desc no final faz o contrario
+
+    List<Professor> findByNomeOrderByIdadeDesc(String nome);
+
+    List<Professor> findByNomeContaining(String termo);
+
+    List<Professor> findByNomeStartsWith(String termo); 
+
+    List<Professor> findByNomeEndsWith(String termo);
 }
