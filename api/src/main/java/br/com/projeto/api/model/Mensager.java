@@ -15,5 +15,4 @@ public class Mensager {
         this.mensagem = mensagem;
     }
 
-
 }

@@ -15,8 +15,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.projeto.api.model.Professor;
+import br.com.projeto.api.model.Usuario;
 import br.com.projeto.api.repository.RepositorioProfessor;
 import br.com.projeto.api.service.ProfessorService;
+import jakarta.validation.Valid;
 
 @RestController
 public class Controller {
@@ -117,7 +119,11 @@ public class Controller {
         return service.remover(id);
     }   
 
-    
+    @PostMapping("/usuario")
+    public void usuario(@Valid @RequestBody Usuario u) {
+
+    }
+
 
     // @PostMapping("/professor")
     // public Professor professor(@RequestBody Professor p) {
